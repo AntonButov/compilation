@@ -1,5 +1,3 @@
-package api
-
 import com.code.factory.compilation.compilationForAssertations
 import com.google.devtools.ksp.processing.Resolver
 import com.google.devtools.ksp.processing.SymbolProcessorEnvironment
