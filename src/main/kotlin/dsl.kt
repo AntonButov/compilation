@@ -10,3 +10,10 @@ infix fun String.compile(action: SymbolProcessorEnvironment.(Resolver) -> Unit):
 infix fun List<String>.compile(action: SymbolProcessorEnvironment.(Resolver) -> Unit): List<File> {
   return compilationForAssertations(this, action)
 }
+
+infix fun File.compile(action: SymbolProcessorEnvironment.(Resolver) -> Unit): List<File> {
+  if (exists()) {
+    return compilationForAssertations(this, action)
+  }
+  throw IllegalArgumentException("File $this does not exist")
+}

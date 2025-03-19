@@ -13,17 +13,26 @@ internal fun compilationForAssertations(
   assertAction: SymbolProcessorEnvironment.(Resolver) -> Unit,
 ): List<File> {
   assert(sources.any { it.isNotBlank() })
+  return compile(sources.toSomeClasses(), assertAction)
+}
+
+@OptIn(ExperimentalCompilerApi::class)
+private fun compile(
+  sourceFiles: List<SourceFile>,
+  assertAction: SymbolProcessorEnvironment.(Resolver) -> Unit,
+): List<File> {
+  assert(sourceFiles.isNotEmpty())
   val testKspProcessorProvider = TestKspProcessor.provider(assertAction)
-  return compilation(
-    sourceFiles = sources.toSomeClasses(),
+  val result = compilation(
+    sourceFiles = sourceFiles,
     processorProvider = testKspProcessorProvider,
-  )
-    .compile()
-    .also {
-      if (KotlinCompilation.ExitCode.OK == it.exitCode) return emptyList()
-      error(it.messages)
-    }
-    .generatedFiles.toList()
+  ).compile()
+
+  if (result.exitCode == KotlinCompilation.ExitCode.OK) {
+    return result.generatedFiles.toList()
+  }
+
+  error(result.messages)
 }
 
 internal fun List<String>.toSomeClasses(): List<SourceFile> = mapIndexed { index, name ->
@@ -31,6 +40,11 @@ internal fun List<String>.toSomeClasses(): List<SourceFile> = mapIndexed { index
     index,
   )
 }
+
+internal fun compilationForAssertations(
+  source: File,
+  assertAction: SymbolProcessorEnvironment.(Resolver) -> Unit,
+): List<File> = compile(listOf(SourceFile.fromPath(source)), assertAction)
 
 private fun String.toSomeClass(index: Int) = SourceFile.kotlin("SomeClass$index.kt", this)
 
