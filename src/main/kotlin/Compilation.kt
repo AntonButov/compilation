@@ -23,16 +23,16 @@ private fun compile(
 ): List<File> {
   assert(sourceFiles.isNotEmpty())
   val testKspProcessorProvider = TestKspProcessor.provider(assertAction)
-  return compilation(
+  val result = compilation(
     sourceFiles = sourceFiles,
     processorProvider = testKspProcessorProvider,
-  )
-    .compile()
-    .also {
-      if (KotlinCompilation.ExitCode.OK == it.exitCode) return emptyList()
-      error(it.messages)
-    }
-    .generatedFiles.toList()
+  ).compile()
+
+  if (result.exitCode == KotlinCompilation.ExitCode.OK) {
+    return result.generatedFiles.toList()
+  }
+
+  error(result.messages)
 }
 
 internal fun List<String>.toSomeClasses(): List<SourceFile> = mapIndexed { index, name ->
