@@ -56,4 +56,11 @@ class CompilationForAssertationTest {
       assertTrue { true }
     }
   }
+
+  @Test
+  fun `wrong file should not compile`() {
+    assertThrows<IllegalArgumentException> {
+      File("") compile {}
+    }
+  }
 }
