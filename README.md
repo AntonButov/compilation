@@ -30,4 +30,11 @@ implementation("com.github.antonbutov:compilation:<$last-version>")
       assertTrue { true }
     }
   }
+
+  @Test
+  fun `correct file should compile`() {
+    File("src/test/kotlin/FilesForTests/CorrectFile.kt") compile {
+      assertTrue { true }
+    }
+  }
 ```
