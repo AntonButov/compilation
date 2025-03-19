@@ -1,4 +1,5 @@
 import org.junit.jupiter.api.assertThrows
+import java.io.File
 import kotlin.test.Test
 import kotlin.test.assertTrue
 
@@ -29,7 +30,7 @@ class CompilationForAssertationTest {
   }
 
   @Test
-  fun `blank sourse should trow error`() {
+  fun `blank source should trow error`() {
     assertThrows<AssertionError> {
       "" compile {
         assertTrue { true }
@@ -46,6 +47,13 @@ class CompilationForAssertationTest {
   fun `incorrect code should not compile with custom message`() {
     assertThrows<IllegalStateException> {
       incorrectCode compile {}
+    }
+  }
+
+  @Test
+  fun `correct file should compile`() {
+    File("src/test/kotlin/FilesForTests/CorrectFile.kt") compile {
+      assertTrue { true }
     }
   }
 }
