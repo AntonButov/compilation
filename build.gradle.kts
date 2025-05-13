@@ -16,7 +16,7 @@ repositories {
 mavenPublishing {
   coordinates(
     groupId = project.group.toString(),
-    artifactId = "test-compilation",
+    artifactId = project.name,
     version = project.version.toString(),
   )
 
