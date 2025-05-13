@@ -1,4 +1,4 @@
-[![](https://jitpack.io/v/AntonButov/Compilation.svg)](https://jitpack.io/#AntonButov/Compilation)
+![Maven Central](https://img.shields.io/maven-central/v/io.github.antonbutov/compilation)
 
 ## Setup
 
