@@ -1,4 +1,4 @@
-[![](https://jitpack.io/v/AntonButov/Compilation.svg)](https://jitpack.io/#AntonButov/Compilation)
+![Maven Central](https://img.shields.io/maven-central/v/io.github.antonbutov/compilation)
 
 ## Setup
 
@@ -7,7 +7,6 @@ dependencyResolutionManagement {
 	repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
 	repositories {
 		mavenCentral()
-		maven { url = uri("https://jitpack.io") }
 		}
 	}
 
