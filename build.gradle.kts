@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "compilation"
-version = "2.2.0"
+version = "2.3.0"
 
 repositories {
   mavenCentral()
@@ -16,7 +16,7 @@ repositories {
 mavenPublishing {
   coordinates(
     groupId = project.group.toString(),
-    artifactId = "test-compilation",
+    artifactId = project.name,
     version = project.version.toString(),
   )
 
