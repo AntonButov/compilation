@@ -5,6 +5,7 @@ kotest = "5.9.1"
 mockk = "1.13.17"
 kotestRunnerJunit5Jvm = "5.9.1"
 ktlint = "12.2.0"
+vanniktech="0.31.0"
 
 [libraries]
 kotest-assertions = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest" }
@@ -16,3 +17,4 @@ kotest-runner-junit5-jvm = { group = "io.kotest", name = "kotest-runner-junit5-j
 
 [plugins]
 ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint" }
+vanniktech = { id = "com.vanniktech.maven.publish", version.ref = "vanniktech" }

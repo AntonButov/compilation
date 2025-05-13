@@ -1,13 +1,53 @@
+import com.vanniktech.maven.publish.SonatypeHost
+
 plugins {
   kotlin("jvm") version "1.9.22"
   alias(libs.plugins.ktlint)
+  alias(libs.plugins.vanniktech)
 }
 
 group = "compilation"
-version = "2.0.0"
+version = "2.1.0"
 
 repositories {
   mavenCentral()
+}
+
+mavenPublishing {
+  coordinates(
+    groupId = project.group.toString(),
+    artifactId = project.name,
+    version = project.version.toString(),
+  )
+
+  publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
+  if (project.findProperty("signing") == "true") {
+    signAllPublications()
+  }
+
+  pom {
+    name.set("Compilation.")
+    description.set("Testing tools.")
+    url.set("https://github.com/AntonButov/compilation")
+    licenses {
+      license {
+        name.set("The Apache License, Version 2.0")
+        url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
+      }
+    }
+    developers {
+      developer {
+        id.set("antonbutov")
+        name.set("Anton Butov")
+        email.set("butov6101@gmail.com")
+      }
+    }
+    scm {
+      connection.set("scm:git:git://github.com/AntonButov/compilation.git")
+      developerConnection.set("scm:git:ssh://github.com/AntonButov/compilation.git")
+      url.set("https://github.com/AntonButov/compilation")
+    }
+  }
 }
 
 dependencies {
