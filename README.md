@@ -3,14 +3,12 @@
 ## Setup
 
 ```
-dependencyResolutionManagement {
-	repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-	repositories {
-		mavenCentral()
-		}
-	}
-
-implementation("com.github.antonbutov:compilation:<$last-version>")
+  repositories {
+    mavenCentral()
+  }
+```
+```
+  implementation("com.github.antonbutov:compilation:<$last-version>")
 ```
 ## How to use
 ```
