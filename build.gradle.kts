@@ -6,8 +6,8 @@ plugins {
   alias(libs.plugins.vanniktech)
 }
 
-group = "compilation"
-version = "2.4.0"
+group = "io.github.antonbutov"
+version = "2.6.0"
 
 repositories {
   mavenCentral()
@@ -16,7 +16,7 @@ repositories {
 mavenPublishing {
   coordinates(
     groupId = project.group.toString(),
-    artifactId = "test-compilation",
+    artifactId = project.name,
     version = project.version.toString(),
   )
 
