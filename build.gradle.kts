@@ -6,8 +6,8 @@ plugins {
   alias(libs.plugins.vanniktech)
 }
 
-group = "compilation"
-version = "2.4.0"
+group = "io.github.antonbutov"
+version = "2.5.0"
 
 repositories {
   mavenCentral()
